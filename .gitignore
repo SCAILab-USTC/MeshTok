@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Environments
+.venv/
+venv/
+env/
+.env
+.env.*
+
+# Experiment outputs
+/checkpoint/
+/outputs/
+/logs/
+/wandb/
+/multirun/
+/.hydra/
+/evals_all/
+*.pth
+*.pt
+*.ckpt
+
+# Data
+/pde_data/
+/data/
+/datasets/
+*.h5
+*.hdf5
+*.npz
+
+# Notebooks and OS metadata
+.ipynb_checkpoints/
+.DS_Store
+Thumbs.db
+
+# Editors
+.idea/
+.vscode/

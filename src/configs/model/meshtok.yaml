@@ -1,0 +1,46 @@
+name: meshtok_auto
+
+# shared attributes
+all_exp: 16
+training: true
+topk: 4
+n_shared_experts: 2
+n_layer: 8
+dim_emb: 512
+moe_intermediate_size: 256
+dim_ffn: 1280
+dropout: 0
+attn_dropout: 0
+n_head: 8
+norm_first: true
+positional_embedding: null
+qk_norm: 1
+norm: rms # select from [layer, rms]
+activation: swiglu
+rotary: 0
+
+refine_ratio: 0.25
+
+flex_attn: 0
+kv_cache: 1
+
+
+dense: [true,true,true,true,true,true,true,true]  
+
+patch_num: 8 # for input, number of patches per dimension
+patch_num_output: 8 
+
+embedder:
+    # choose from [linear, conv, overlap_linear] 
+    type: conv
+    dim: 512
+    patch_num: 8 
+    patch_num_output: 8 
+    time_embed: learnable # select from continuous and learnable
+    select: physical
+    max_time_len: 20
+
+    conv_dim: 32
+    early_conv: 0
+
+    deep: 0

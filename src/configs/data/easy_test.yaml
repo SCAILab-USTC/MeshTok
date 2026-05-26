@@ -1,0 +1,97 @@
+types: [gray_scott,allen_cahn,cfddata,com_ns,shallow_water]
+
+max_output_dimension: 4
+train_val_test_ratio: [0.8, 0.1, 0.1]
+t_num: 20
+x_num: 128 # how many to use for model input
+
+mixed_length: ${.t_num} # 0 means all have same length, otherwise, pad to t_num
+
+random_start: # randomly select the time starting idx
+  train: true
+  val: false
+  test: false
+  start_max: 40
+
+# whether to share all channels among equations or use c_mask
+tie_fields: 1
+
+sampler:
+  uniform: 1 
+  
+  # when uniform=1, the following will be ignored. Otherwise, the probabilities will be normalized
+  shallow_water: 1
+  allen_cahn: 1
+  black_scholes_barenblatt: 1
+  burgers: 1
+  com_ns: 1
+  gray_scott: 1
+  shear_flow: 1
+  acoustic_scattering: 1
+  # acoustic_scattering_inclusions: 1
+  cfddata: 1
+  fpo_geometry_medium_single_obstacle: 1
+  
+
+
+shallow_water:
+  data_path:
+    train: pde_data/ShallowWater2D/train.hdf5
+    val: pde_data/ShallowWater2D/test.hdf5
+    test: pde_data/ShallowWater2D/test.hdf5
+  t_step: 2 # 5, dt=0.01
+  x_num: 128
+  dim: 1
+  c_mask: [0, 0, 0, 0, 0, 1]
+
+gray_scott:
+  folder:
+    train: pde_data/gray_scott_reaction_diffusion/train
+    val: pde_data/gray_scott_reaction_diffusion/test
+    test: pde_data/gray_scott_reaction_diffusion/test
+  t_step: 1 # 5, dt=0.01
+  x_num: 128
+  dim: 2
+  c_mask: [1, 1, 0, 0, 0, 0]
+
+acoustic_scattering:  
+  folder:
+    train: pde_data/acoustic_scattering_inclusions/train
+    val: pde_data/acoustic_scattering_inclusions/test
+    test: pde_data/acoustic_scattering_inclusions/test
+  t_step: 1 # 5, dt=0.01
+  x_num: 256
+  dim: 3
+  c_mask: [1, 1, 1, 0, 0, 0]
+
+
+allen_cahn:
+  data_path:
+    train: pde_data/allen-cahn/allen-cahn_train.hdf5
+    val: pde_data/allen-cahn/allen-cahn_test.hdf5
+    test: pde_data/allen-cahn/allen-cahn_test.hdf5
+  t_step: 2 # 5, dt=0.01
+  x_num: 128
+  dim: 1
+  c_mask: [1, 0, 0, 0, 0, 0]
+
+
+com_ns:
+  data_path:
+    train: pde_data/cfddata_hard/train.hdf5
+    val: pde_data/cfddata_hard/val.hdf5
+    test: pde_data/cfddata_hard/test.hdf5
+  t_step: 1 # dt=0.05
+  x_num: 128
+  dim: 4
+  c_mask: [1, 1, 0, 1, 1, 0]
+
+cfddata:
+  folder:
+    train: pde_data/cfddata/train
+    val: pde_data/cfddata/val
+    test: pde_data/cfddata/test
+  t_step: 1 # 5, dt=0.01
+  x_num: 128
+  dim: 4
+  c_mask: [1, 1, 1, 1, 0, 0]

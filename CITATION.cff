@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use MeshTok, please cite the paper."
+title: "MeshTok: Efficient Multi-Scale Tokenization for Scalable PDE Transformers"
+authors:
+  - family-names: Zhao
+    given-names: Yanshun
+  - family-names: Peng
+    given-names: Xiaoyu
+  - family-names: Jiang
+    given-names: Jiamin
+  - family-names: Zhu
+    given-names: Congcong
+  - family-names: Chen
+    given-names: Jingrun
+year: 2026
+repository-code: "https://github.com/SCAILab-USTC/MeshTok"
